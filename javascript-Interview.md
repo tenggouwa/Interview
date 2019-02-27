@@ -1,4 +1,4 @@
-es6 面试题https://www.cnblogs.com/fengxiongZz/p/8191503.html
+javascript 面试题https://www.cnblogs.com/fengxiongZz/p/8191503.html
 ===
 
 
@@ -61,7 +61,9 @@ es6 面试题https://www.cnblogs.com/fengxiongZz/p/8191503.html
 	而Async是Generator函数的语法糖，Async的出现主要是为了解决另外一个问题，刚刚说了Generator是解决任务的挂起，promise是解决异步回调问题，而async就是吧异步的操作，变成队列模式，
 	因为async中使用await做状态的定义，调用的时候不需要next（），自动执行，并且会讲每个await中promise中resolve结果赋值给await的变量上以供后面的步骤使用，每一个await都会等到promise返回结果后才会继续自动往下执行，这样就实现了我在日常生活中排队执行的概念，将所有的异步任务以同步的方式定义，不需要担心那个快那个慢，因为她是一个一个自动向下的
 
-(11)webpack-bundle-analyzer可视化的打包体积
+(11)webpack-bundle-analyzer
+---
+    可视化的打包体积
 
 (12) 重绘与重排(回流)区别 
 ---
@@ -89,4 +91,58 @@ es6 面试题https://www.cnblogs.com/fengxiongZz/p/8191503.html
 (14)async 和 await
 ---
     
-https://www.cnblogs.com/SamWeb/p/8417940.html     https://www.jianshu.com/p/73b070eebf50
+    https://www.cnblogs.com/SamWeb/p/8417940.html     https://www.jianshu.com/p/73b070eebf50
+
+(15)new 操作符
+---
+    通过new创建对象经历4个步骤
+
+    1、创建一个新对象；[var o = {};]
+
+    2、将构造函数的作用域赋给新对象（因此this指向了这个新对象）；[Person.apply(o)] [Person原来的this指向的是window]
+
+    3、执行构造函数中的代码(为这个新对象添加属性)；
+
+    4、返回新对象。
+
+(16)继承方式 https://www.cnblogs.com/humin/p/4556820.html
+---
++ 原型链继承<br>
+Cat.prototype = new Animal();
+
++ 构造继承<br>
+Animal.call(this);
+
++ 实例继承<br>
+var instance = new Animal();
+
++ 拷贝继承<br> 
+var animal = new Animal();
+  for(var p in animal){
+    Cat.prototype[p] = animal[p];
+  }
+
++ 组合继承<br>
+function Cat(name){
+  Animal.call(this);
+  this.name = name || 'Tom';
+}
+Cat.prototype = new Animal();
+
+(17)js闭包
+---
++ 为什么使用闭包？ 因为局部作用域能够访问到迁居变量，但反之不行。
++ 简单闭包函数
+
+```
+function f1() {
+  var n = 1;
+  return function f2() {
+    cosnoel.log(n);
+  }
+}
+```
++ 闭包概念？ 闭包就是能够读取其他函数内部变量的函数。
++ 闭包作用？ 可以读取函数内部的变量，让这些变量的值始终保持在内存中，不会在f1调用后被自动清除。
++ 闭包缺点？ 由于闭包会使得函数中的变量都被保存在内存中，内存消耗很大,在IE中可能导致内存泄露。解决方法是，在退出函数之前，将不使用的局部变量全部删除。
+（2）闭包会在父函数外部，改变父函数内部变量的值。所以，如果你把父函数当作对象（object）使用，把闭包当作它的公用方法（Public Method），把内部变量当作它的私有属性（private value），这时一定要小心，不要随便改变父函数内部变量的值。
