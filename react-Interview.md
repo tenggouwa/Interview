@@ -1,7 +1,7 @@
 React https://segmentfault.com/a/1190000016885832?utm_source=tag-newest
 ===
 
-(1)ReactT组件生命周期
+(1)React组件生命周期
 ---
 
     1、getDefaultProps  设置默认的props，也可以用dufaultProps设置组件的默认属性.
