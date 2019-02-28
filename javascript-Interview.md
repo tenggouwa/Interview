@@ -76,22 +76,32 @@ javascript 面试题https://www.cnblogs.com/fengxiongZz/p/8191503.html
 
 	特点：
 	JavaScript对象是通过引用来传递的，我们创建的每个新对象实体中并没有一份属于自己的原型副本。当我们修改原型时，与之相关的对象也会继承这一改变。当我们需要一个属性的时，Javascript引擎会先看当前对象中是否有这个属性， 如果没有的话， 就会查找他的Prototype对象是否有这个属性，如此递推下去，一直检索到 Object 内建对象。
-  ```function Func(){}
+  ```
+    function Func(){}
     Func.prototype.name = "Sean";
     Func.prototype.getInfo = function({
         return this.name;
     }
-    var person = new Func();//现在可以参考            var person = Object.create(oldObject);
+      var person = new Func();//现在可以参考  
+      var person = Object.create(oldObject);
     console.log(person.getInfo());//它拥有了Func的属性和方法
     //"Sean" 
-    console.log(Func.prototype);
-    // Func { name="Sean", getInfo=function()}
+      console.log(Func.prototype);
+      // Func { name="Sean", getInfo=function()}
 ```
 
 (14)async 和 await
 ---
     
     https://www.cnblogs.com/SamWeb/p/8417940.html     https://www.jianshu.com/p/73b070eebf50
+
+    async是异步的，返回的是Promise对象，使用then解析出结果。
+
+    await后面可以跟任何表达式，一般会跟返回promise对象的表达式， await只能放在async里
+
+    async, await执行顺序，调用async内部会调用Promise.solve,返回promise，错误的话会调用Promise.reject; 遇到await等待，等待await里面promise执行完毕，向下执行。
+
+    async/await优点：方便级联调用，同步代码的编写方式，多个参数传递，同步异步一起编写，是对Promise的优化
 
 (15)new 操作符
 ---
@@ -129,6 +139,9 @@ function Cat(name){
 }
 Cat.prototype = new Animal();
 
++ Class继承<br>
+通过extend继承父类，在子组件通过super()继承this
+
 (17)js闭包
 ---
 + 为什么使用闭包？ 因为局部作用域能够访问到迁居变量，但反之不行。
@@ -146,3 +159,16 @@ function f1() {
 + 闭包作用？ 可以读取函数内部的变量，让这些变量的值始终保持在内存中，不会在f1调用后被自动清除。
 + 闭包缺点？ 由于闭包会使得函数中的变量都被保存在内存中，内存消耗很大,在IE中可能导致内存泄露。解决方法是，在退出函数之前，将不使用的局部变量全部删除。
 （2）闭包会在父函数外部，改变父函数内部变量的值。所以，如果你把父函数当作对象（object）使用，把闭包当作它的公用方法（Public Method），把内部变量当作它的私有属性（private value），这时一定要小心，不要随便改变父函数内部变量的值。
+
+(18)map,filter
+---
++ map生成一个数组，做变换后，又放回新的数组
+```
+[1, 2, 3].map(v => v + 1) // -> [2, 3, 4]
+```
++ filter 遍历数组时将true的放入新数组，可以删除一些不需要的
+```
+let array = [1, 2, 4, 6]
+let newArray = array.filter(item => item !== 6)
+console.log(newArray) // [1, 2, 4]
+```
