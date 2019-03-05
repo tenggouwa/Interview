@@ -14,3 +14,18 @@ React https://segmentfault.com/a/1190000016885832?utm_source=tag-newest
     8、componentWillUpdata(nextProps, nextState)  组件初始化时不调用，只有在组件将要更新时才调用，此时可以修改state
     9、componentDidUpdate()  组件初始化时不调用，组件更新完成后调用，此时可以获取dom节点。
     10、componentWillUnmount()  组件将要卸载时调用，一些事件监听和定时器需要在此时清除。
+    
+(2)React整体思想
+---
+    UI = f(data)
+
+(3)PureComponent https://segmentfault.com/a/1190000014979065
+---
+    提供一个shouldComponentUpdate
+    在无状态组件开发中，可以使用React.memo来代替
+
+(4)高阶组件
+---
+    它接受至少一个 React 组件为参数，并且能够返回一个全新的 React 组件作为结果,
+    最巧妙的就是可以进行链式调用
+    const SuperX = withThree(withTwo(withOne(X)));
