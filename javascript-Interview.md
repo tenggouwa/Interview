@@ -118,26 +118,30 @@ javascript 面试题https://www.cnblogs.com/fengxiongZz/p/8191503.html
 (16)继承方式 https://www.cnblogs.com/humin/p/4556820.html
 ---
 + 原型链继承<br>
-Cat.prototype = new Animal();
+`Cat.prototype = new Animal();`
 
 + 构造继承<br>
-Animal.call(this);
+`Animal.call(this);`
 
 + 实例继承<br>
-var instance = new Animal();
+`var instance = new Animal();`
 
 + 拷贝继承<br> 
-var animal = new Animal();
+```
+  var animal = new Animal();
   for(var p in animal){
     Cat.prototype[p] = animal[p];
   }
+```
 
 + 组合继承<br>
+```
 function Cat(name){
   Animal.call(this);
   this.name = name || 'Tom';
 }
 Cat.prototype = new Animal();
+```
 
 + Class继承<br>
 通过extend继承父类，在子组件通过super()继承this
